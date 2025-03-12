@@ -1,0 +1,9 @@
+scrapy
+beautifulsoup4
+requests
+fastapi
+uvicorn
+
+streamlit
+beautifulsoup4
+

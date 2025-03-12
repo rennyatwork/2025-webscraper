@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.streamlit
+    ports:
+      - "8501:8501"
+    volumes:
+      - .:/app
+
+  scraper:
+    build:
+      context: .
+      dockerfile: scraper/Dockerfile.fastapi
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+
