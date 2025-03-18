@@ -1,7 +1,15 @@
+import os
+import debugpy
 from fastapi import FastAPI
 import requests
-
 app = FastAPI()
+
+# Check if we are in development mode (use an environment variable)
+if os.getenv("DEBUG_MODE", "false") == "true":
+    # Start debugpy to listen for debugger connection
+    debugpy.listen(('0.0.0.0', 5679))  # Listen on port 5679
+    print("Waiting for debugger to attach...")
+    debugpy.wait_for_client()  # Wait for VSCode debugger to attach
 
 @app.get("/scrape")
 def scrape(url: str):

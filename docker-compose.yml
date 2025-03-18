@@ -8,6 +8,9 @@ services:
       - "8501:8501"
     volumes:
       - .:/app
+    environment:
+      ##- DEBUG_MODE=true  # Set to 'true' for debugging, 'false' for production
+      - DEBUG_MODE=false  # Set to 'true' for debugging, 'false' for production
 
   scraper:
     build:
@@ -17,4 +20,7 @@ services:
       - "8000:8000"
     volumes:
       - .:/app
+    environment:
+      - DEBUG_MODE=true  # Set to 'true' for debugging, 'false' for production
+      ##- DEBUG_MODE=false  # Set to 'true' for debugging, 'false' for production
 

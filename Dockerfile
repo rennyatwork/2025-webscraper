@@ -1,6 +1,10 @@
 # Use official Python image from Docker Hub
 FROM python:3.12-slim
 
+
+# Install curl (and any other system utilities or libraries) globally
+RUN apt-get update && apt-get install -y curl
+
 # Set working directory in the container
 WORKDIR /app
 
