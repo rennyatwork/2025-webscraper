@@ -4,5 +4,4 @@ requests
 fastapi
 uvicorn
 streamlit
-beautifulsoup4
 debugpy  # Add debugpy here

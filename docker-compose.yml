@@ -6,21 +6,46 @@ services:
       dockerfile: Dockerfile.streamlit
     ports:
       - "8501:8501"
+    depends_on:
+      - beautifulsoup
+      - scrapy
     volumes:
       - .:/app
     environment:
-      ##- DEBUG_MODE=true  # Set to 'true' for debugging, 'false' for production
-      - DEBUG_MODE=false  # Set to 'true' for debugging, 'false' for production
+      - DEBUG_MODE=false
+    networks:
+      - mynetwork
 
-  scraper:
+  beautifulsoup:
     build:
       context: .
-      dockerfile: scraper/Dockerfile.fastapi
+      dockerfile: beautifulsoup/Dockerfile.fastapi
     ports:
       - "8000:8000"
     volumes:
       - .:/app
     environment:
-      - DEBUG_MODE=true  # Set to 'true' for debugging, 'false' for production
-      ##- DEBUG_MODE=false  # Set to 'true' for debugging, 'false' for production
+      - DEBUG_MODE=false
+    networks:
+      - mynetwork
 
+  scrapy:
+    build:
+      context: .
+      dockerfile: scrapy/Dockerfile.scrapy
+    ports:
+      - "8001:8001"
+    environment:
+      - DEBUG_MODE=false
+    networks:
+      - mynetwork
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/scrape"]
+      interval: 30s
+      retries: 3
+      start_period: 10s
+      timeout: 10s
+
+networks:
+  mynetwork:
+    driver: bridge
