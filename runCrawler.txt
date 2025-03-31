@@ -1,0 +1,10 @@
+create scraper folder
+scrapy startproject scraper
+
+
+genereate spider
+scrapy genspider hello example.com
+
+run spider
+go to ./scrapy/scraper
+$ scrapy crawl hello
