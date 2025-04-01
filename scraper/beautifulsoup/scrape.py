@@ -1,3 +1,4 @@
+"""
 from fastapi import FastAPI, Query
 from pydantic import BaseModel
 import requests
@@ -25,3 +26,4 @@ def scrape(url: str = Query(...)):
 def company_description(url: str = Query(...)):
     description = creer_description_entreprise(url)
     return ScrapeResponse(description=description)
+"""

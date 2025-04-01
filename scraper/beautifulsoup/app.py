@@ -2,6 +2,9 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import requests
 from bs4 import BeautifulSoup
+#from text_processing.summarizer.summarizer import summarize_text
+#from text_processing.translator.translator import translate_text
+
 
 app = FastAPI()
 
